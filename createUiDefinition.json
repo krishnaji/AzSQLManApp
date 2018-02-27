@@ -1,0 +1,154 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Compute.MultiVm",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "basics": [
+            {}
+        ],
+        "steps": [
+            {
+                "name": "sqlConfig",
+                "label": "Azure SQL settings",
+                "subLabel": {
+                    "preValidation": "Configure the infrastructure settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Sql settings",
+                "elements": [
+                    {
+                        "name": "sqlServerPrimaryName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Enter the name of the primary SQL Server.",
+                        "defaultValue": "",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerPrimaryAdminUsername",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Enter the administrator username.",
+                        "defaultValue": "",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerPrimaryAdminPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                          "password": "Password",
+                          "confirmPassword": "Confirm password"
+                        },
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "options": {
+                          "hideConfirmation": false
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerSecondaryName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "The name of the secondary SQL Server",
+                        "defaultValue": "",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerSecondaryRegion",
+                        "type": "Microsoft.Common.OptionsGroup",
+                        "label": "Select the region data encryption ",
+                        "defaultValue": "eastus2",
+                        "toolTip": "",
+                        "constraints": {
+                          "allowedValues": [
+                            {
+                              "label": "West Central US",
+                              "value": "westcentralus"
+                            },
+                            {
+                              "label": "Southeast Asia",
+                              "value": "southeastasia"
+                            }
+                          ]
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerSecondaryAdminUsername",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Enter the administrator username.",
+                        "defaultValue": "",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlServerSecondaryAdminPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                          "password": "Password",
+                          "confirmPassword": "Confirm password"
+                        },
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "options": {
+                          "hideConfirmation": false
+                        },
+                        "visible": true
+                      },
+                      {
+                        "name": "sqlFailoverGroupName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Enter the name of the failover group",
+                        "defaultValue": "",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "",
+                          "validationMessage": ""
+                        },
+                        "visible": true
+                      }
+                ]
+            }
+        ],
+        "outputs": {
+             "sqlServerPrimaryName": "[steps('sqlConfig').sqlServerPrimaryName]", 
+             "sqlServerPrimaryAdminUsername":"[steps('sqlConfig').sqlServerPrimaryAdminUsername]",
+             "sqlServerPrimaryAdminPassword":"[steps('sqlConfig').sqlServerPrimaryAdminPassword]",
+             "sqlServerSecondaryName":"[steps('sqlConfig').sqlServerSecondaryName]",
+             "sqlServerSecondaryRegion":"[steps('sqlConfig').sqlServerSecondaryRegion]",
+             "sqlServerSecondaryAdminUsername":"[steps('sqlConfig').sqlServerSecondaryAdminUsername]",
+             "sqlServerSecondaryAdminPassword":"[steps('sqlConfig').sqlServerSecondaryAdminPassword]",
+             "sqlFailoverGroupName":"[steps('sqlConfig').sqlFailoverGroupName]"
+        }
+    }
+}
